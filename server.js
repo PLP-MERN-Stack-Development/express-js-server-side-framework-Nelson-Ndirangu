@@ -4,36 +4,37 @@
 const express = require('express');
 const connectDB = require('./configs/db');
 const dotenv = require('dotenv');
+const productRoutes = require('./routes/productRoute');
 
 
 
 // Sample in-memory products database
-let products = [
-  {
-    id: '1',
-    name: 'Laptop',
-    description: 'High-performance laptop with 16GB RAM',
-    price: 1200,
-    category: 'electronics',
-    inStock: true
-  },
-  {
-    id: '2',
-    name: 'Smartphone',
-    description: 'Latest model with 128GB storage',
-    price: 800,
-    category: 'electronics',
-    inStock: true
-  },
-  {
-    id: '3',
-    name: 'Coffee Maker',
-    description: 'Programmable coffee maker with timer',
-    price: 50,
-    category: 'kitchen',
-    inStock: false
-  }
-];
+// let products = [
+//   {
+//     id: '1',
+//     name: 'Laptop',
+//     description: 'High-performance laptop with 16GB RAM',
+//     price: 1200,
+//     category: 'electronics',
+//     inStock: true
+//   },
+//   {
+//     id: '2',
+//     name: 'Smartphone',
+//     description: 'Latest model with 128GB storage',
+//     price: 800,
+//     category: 'electronics',
+//     inStock: true
+//   },
+//   {
+//     id: '3',
+//     name: 'Coffee Maker',
+//     description: 'Programmable coffee maker with timer',
+//     price: 50,
+//     category: 'kitchen',
+//     inStock: false
+//   }
+// ];
 
 // Connecting to the database
 connectDB();
@@ -44,6 +45,7 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 
+
 // Middleware setup
 app.use(express.json());
 
@@ -53,7 +55,7 @@ app.get('/', (req, res) => {
 });
 
 // Defining the default route
-app.use("/api", require("./routes/productRoute"));
+app.use("/api/products", productRoutes);
 
 // Starting server
 const PORT = process.env.PORT || 3000;

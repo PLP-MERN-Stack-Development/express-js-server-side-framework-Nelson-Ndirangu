@@ -6,7 +6,7 @@ const Product = require("../Models/products");
 
 // Getting all products
 
-router.get("/api/products", async(req, res)=>{
+router.get("/", async(req, res)=>{
     try {
        const product = await Product.find();
        res.json(product)       
@@ -18,7 +18,7 @@ router.get("/api/products", async(req, res)=>{
 
 // Get a specific product
 
-router.get("/api/products/:id", async(req, res)=>{
+router.get("/:id", async(req, res)=>{
     try {
         const product = await Product.findById(req.params.id);
 
@@ -47,7 +47,7 @@ router.get("/api/products/:id", async(req, res)=>{
 
 // Creating a new product
 
-router.post("/api/products", async(req, res)=>{
+router.post("/", async(req, res)=>{
     const { id, name, description, price, category, in_stock } = req.body;
     try {
         // Adding a new product and Saving
@@ -62,7 +62,7 @@ router.post("/api/products", async(req, res)=>{
 
 // Updating a product by id
 
-router.put("/api/products/:id", async(req, res)=>{
+router.put("/:id", async(req, res)=>{
     try {
         const UpdateProduct = await Product.findByIdAndUpdate();
         req.params.id,
